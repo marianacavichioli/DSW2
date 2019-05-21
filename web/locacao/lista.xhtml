@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xlmns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <h:outputStylesheet name="estilo.css"/>
+        
+        <title>#{msg['aluguel']}</title>
+
+        <div class= "header">
+            <center>
+                <h1>#{msg['aluguel']}</h1>
+            </center>
+        </div>
+    </h:head>
+
+    <h:body>
+       <div class ='botoes'>
+            <ul>
+                <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
+                    <li><h:commandLink action="#">#{msg['cadastro_locacao']}</h:commandLink></li>
+                <!-- </sec:authorize> -->
+                
+                <!-- nao sei se os links funcionam, nao parece ser assim que usa -->
+                <li><h:commandLink action="#">#{msg['lista_locacao']}</h:commandLink></li>
+                <li><h:commandLink action="logout">Logout</h:commandLink></li>
+                
+            </ul>
+        </div>
+    
+        <div class='conteudo'>
+                
+            <h:form>
+            <h:dataTable id="lista_locacao"
+                         summary="#{msg['lista_locacao']}"
+                         value="#" 
+                         var="lista_locacao">
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText id="idLocacao" value="#{locacao.id}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=#{msg['cnpj_locadora']}/>
+                    </f:facet>
+                    <h:outputText id="cnpjLocadora" value="#{locacao.cnpj_locadora}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=#{msg['data']}/>
+                    </f:facet>
+                    <h:outputText id="dataLocacao" value="#{locacao.data}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=#{msg['horario']}/>
+                    </f:facet>
+                    <h:outputText id="horaLocacao" value="#{locacao.hora}" />
+                </h:column>
+                
+            </h:dataTable> 
+        </h:form>
+               
+        </div>
+</body>
+</html>
