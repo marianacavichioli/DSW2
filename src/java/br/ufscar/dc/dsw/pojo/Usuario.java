@@ -18,30 +18,7 @@ public class Usuario implements Serializable{
     private String email;
     private String senha;
     private int ativo;
-    
- 
-    public Usuario(Long id, String email, String senha, int ativo) {
-        this.id = id;
-        this.email = email;
-        this.senha = senha;
-        this.ativo = ativo;
-    }
-
-    public Usuario(String senha, String email, int ativo){
-        this.senha = senha;
-        this.email = email;
-        this.ativo = ativo;
-    }
-    
-    public Usuario(String email, int ativo){
-        this.email = email;
-        this.ativo = ativo;
-    }
-
-    public Usuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+   
     public Long getId() {
         return id;
     }

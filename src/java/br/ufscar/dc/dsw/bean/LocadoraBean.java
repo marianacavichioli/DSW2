@@ -2,10 +2,11 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.pojo.Locadora;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
-public class LocadoraBean {
+public class LocadoraBean implements Serializable{
     
     private Locadora locadora;
 

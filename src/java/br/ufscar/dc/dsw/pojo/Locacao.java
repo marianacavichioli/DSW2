@@ -20,22 +20,6 @@ public class Locacao implements Serializable{
     private String dia;
     private String hora;
     
-    public Locacao(Long id, String cpf_cliente, String cnpj_locadora, String dia, String hora) {
-        this.id = id;
-        this.cpf_cliente = cpf_cliente;
-        this.cnpj_locadora = cnpj_locadora;
-        this.dia = dia;
-        this.hora = hora;
-    } 
-
-    public Locacao(Long id) {
-        this.id = id;
-    }
-
-    public Locacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Long getId() {
         return id;
     }

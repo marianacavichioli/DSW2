@@ -16,18 +16,7 @@ public class Papel implements Serializable{
     private Long id;
     private String email;
     private String nome;
-    
-    public Papel(Long id, String email, String nome) {
-        this.id = id;
-        this.email = email;
-        this.nome = nome;
-    }
-    
-    public Papel(String email, String nome) {
-        this.email = email;
-        this.nome = nome;
-    }
-
+   
     public Long getId() {
         return id;
     }

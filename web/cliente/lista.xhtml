@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <h:outputStylesheet name="estilo.css"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
 
         <title>#{msg['aluguel']}</title>
 
@@ -19,12 +19,24 @@
     <h:body>
         <div class ='botoes'>
             <ul>
-                <!-- nao sei se os links funcionam, nao parece ser assim que usa -->
-                <li><h:commandLink action="#">#{msg['cadastro_locadora']}</h:commandLink></li>
-                <li><h:commandLink action="#">#{msg['lista_locadora']}</h:commandLink></li>
-                <li><h:commandLink action="#{listaClientes.cadastra}">#{msg['cadastro_cliente']}</h:commandLink></li>
-                <li><h:commandLink action="#{listaClientes.lista}">#{msg['lista_cliente']}</h:commandLink></li>
-                <li><h:commandLink action="logout">Logout</h:commandLink></li>
+                <h:form>
+                    <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
+                    <li><h:commandLink action="#">#{msg['cadastro_locacao']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
+                    <li><h:commandLink action="#">#{msg['lista_locacao']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <!-- <sec:authorize access="hasRole('ADMIN')"> -->
+                    <li><h:commandLink action="#">#{msg['cadastro_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#">#{msg['lista_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#">#{msg['cadastro_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <li><h:commandLink action="logout">Logout</h:commandLink></li>
+                </h:form>
             </ul>
         </div>
 
@@ -71,13 +83,13 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header"></f:facet>
+                        <f:facet name="header">Edição</f:facet>
                         <h:commandButton action = "#{clienteBean.edita(cliente.id)}" value="Edição" class="btn btn-primary">
                         </h:commandButton>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header"></f:facet>
+                        <f:facet name="header">Remoção</f:facet>
                         <h:commandButton action = "#{clienteBean.delete(cliente)}" value="Remoção"
                                          onclick="return confirm('Tem certeza de que deseja excluir este item?');"
                                          class="btn btn-danger">

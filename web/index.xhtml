@@ -32,7 +32,7 @@
                     <!-- <sec:authorize access="hasRole('ADMIN')"> -->
                     <li><h:commandLink action="#">#{msg['cadastro_locadora']}</h:commandLink></li>
                     <li><h:commandLink action="#">#{msg['lista_locadora']}</h:commandLink></li>
-                    <li><h:commandLink action="#">#{msg['cadastro_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
                     <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
