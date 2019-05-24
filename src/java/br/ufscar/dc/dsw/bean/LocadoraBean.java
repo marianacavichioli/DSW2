@@ -2,26 +2,27 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.pojo.Locadora;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
-public class LocadoraBean {
+public class LocadoraBean implements Serializable{
     
     private Locadora locadora;
 
     public String lista() {
-        return "livro/index.xhtml";
+        return "locadora/lista.xhtml";
     }
 
     public String cadastra() {
         locadora = new Locadora();
-        return "form.xhtml";
+        return "locadora/formulario.xhtml";
     }
 
     public String edita(Long id) {
         LocadoraDAO dao = new LocadoraDAO();
         locadora = dao.get(id);
-        return "form.xhtml";
+        return "locadora/formulario.xhtml";
     }
 
     public String salva() {
@@ -31,13 +32,13 @@ public class LocadoraBean {
         } else {
             dao.update(locadora);
         }
-        return "index.xhtml";
+        return "locadora/lista.xhtml";
     }
 
     public String delete(Locadora locadora) {
         LocadoraDAO dao = new LocadoraDAO();
         dao.delete(locadora);
-        return "index.xhtml";
+        return "locadora/lista.xhtml";
     }
 
     public String volta() {

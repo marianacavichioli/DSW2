@@ -12,39 +12,9 @@ public class Locadora extends Usuario implements Serializable{
     private String nome;
     private String cnpj;
     private String cidade;
-
-    public Locadora(String nome, String senha, String email, int ativo) {
-        super(senha, email, ativo);
-        this.id = super.getId();
-    }
-
-    public Locadora(Long id, String nome, String cnpj, String cidade, String email, int ativo) {
-        super(email, ativo);
-        this.id = id;
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.cidade = cidade;
-    }
-
-    public Locadora(Long id, String nome, String cnpj, String cidade, String senha, String email, int ativo) {
-        super(senha, email, ativo);
-        this.id = id;
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.cidade = cidade;
-    }
-
-    public Locadora(Long id) {
-        super(null, null, -1);
-        this.id = id;
-    }
-
-    public Locadora() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+   
     public Long getId() {
-        return id;
+        return super.getId();
     }
 
     public void setId(Long id) {
