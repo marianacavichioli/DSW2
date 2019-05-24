@@ -44,11 +44,11 @@ public class ClienteBean implements Serializable{
     public String delete(Cliente cliente) {
         ClienteDAO dao = new ClienteDAO();
         dao.delete(cliente);
-        return "cliente/lista.xhtml";
+        return "lista.xhtml";
     }
 
     public String volta() {
-        return "cliente/lista.xhtml?faces-redirect=true";
+        return "/lista.xhtml?faces-redirect=true";
     }
 
     public List<Cliente> getClientes() throws SQLException {
