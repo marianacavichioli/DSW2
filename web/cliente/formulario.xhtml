@@ -40,110 +40,98 @@
             </ul>
         </div>
 
-        <h:form id="form" class="form-horizontal">
-
-            <div class="form-group">  
-                <div class="col-sm-4"></div>  
-                <div  class="col-sm-4">  
-                    <h2 style="text-align: center">#{msg['book.form.label']}</h2>  
-                </div>  
-            </div>  
-            <hr/>  
-            <div class="form-group">  
-                <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['nome']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="nome" value="#{clienteBean.cliente.nome}" class="form-control"   
-                                 validatorMessage="#{msg['nome']}">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="nome"/>
-                </div>  
-            </div>  
-
-            <div class="form-group">  
-                <h:outputLabel for="cpf" class="control-label col-sm-4">#{msg['cpf']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="cpf" value="#{clienteBean.cliente.cpf}" class="form-control"   
-                                 validatorMessage="#{msg['cpf']}">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="cpf"/>
-                </div>  
-            </div>
-
-            <div class="form-group">  
-                <h:outputLabel for="telefone" class="control-label col-sm-4">#{msg['telefone']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="telefone" value="#{clienteBean.cliente.telefone}" class="form-control"   
-                                 validatorMessage="#{msg['telefone']}">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="telefone"/>
-                </div>  
-            </div>
-            
-            <div class="form-group">  
-                <h:outputLabel for="data_nascimento" class="control-label col-sm-4">#{msg['data_nascimento']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="data_nascimento" value="#{clienteBean.cliente.data_nascimento}" class="form-control"   
-                                 validatorMessage="#{msg['data_nascimento']}"
-                                 a:type="Date">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="data_nascimento"/>
-                </div>  
-            </div>
-
-            <div class="form-group">  
-                <h:outputLabel for="sexo" class="control-label col-sm-4">#{msg['sexo']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="sexo" value="#{clienteBean.cliente.sexo}" class="form-control"   
-                                 validatorMessage="#{msg['sexo']}"
-                                 a:type="Date">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="sexo"/>
-                </div>  
-            </div>
-            
-            <div class="form-group">  
-                <h:outputLabel for="email" class="control-label col-sm-4">#{msg['email']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="email" value="#{clienteBean.cliente.email}" class="form-control"   
-                                 validatorMessage="#{msg['email']}"
-                                 a:type="email">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="email"/>
-                </div>  
-            </div>
-            
-            <div class="form-group">  
-                <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['senha']}</h:outputLabel>  
-                <div class="col-sm-4">  
-                    <h:inputText id="senha" value="#{clienteBean.cliente.email}" class="form-control"   
-                                 validatorMessage="#{msg['senha']}"
-                                 a:type="password">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="senha"/>
-                </div>  
-            </div>
-
-            <div class="form-group">  
-                <div class="col-sm-4"></div>  
-                <div class="col-sm-4">  
-                    <div class="col-sm-2">
-
-                        <h:commandButton value="Salvar" action="#{clienteBean.salva()}" class="btn btn-primary"   
-                                         style="width: 80px;"></h:commandButton>  
-                    </div>  
-                    <br/>  
-                    <div class="col-sm-2">  
-                        <h:link outcome="index" value="Salvar" class="btn btn-success" />  
+        <div class ='conteudo'>
+            <h:form id="form" class="form-horizontal">
+                <div class="form-group">  
+                    <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['nome']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="nome" value="#{clienteBean.cliente.nome}" class="form-control"   
+                                     validatorMessage="#{msg['nome']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="nome"/>
                     </div>  
                 </div>  
-            </div>  
-        </h:form>  
+
+                <div class="form-group">  
+                    <h:outputLabel for="cpf" class="control-label col-sm-4">#{msg['cpf']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="cpf" value="#{clienteBean.cliente.cpf}" class="form-control"   
+                                     validatorMessage="#{msg['cpf']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="cpf"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="telefone" class="control-label col-sm-4">#{msg['telefone']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="telefone" value="#{clienteBean.cliente.telefone}" class="form-control"   
+                                     validatorMessage="#{msg['telefone']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="telefone"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="data_nascimento" class="control-label col-sm-4">#{msg['data_nascimento']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="data_nascimento" value="#{clienteBean.cliente.data_nascimento}" class="form-control"   
+                                     validatorMessage="#{msg['data_nascimento']}"
+                                     a:type="Date">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="data_nascimento"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="sexo" class="control-label col-sm-4">#{msg['sexo']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="sexo" value="#{clienteBean.cliente.sexo}" class="form-control"   
+                                     validatorMessage="#{msg['sexo']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="sexo"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="email" class="control-label col-sm-4">#{msg['email']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="email" value="#{clienteBean.cliente.email}" class="form-control"   
+                                     validatorMessage="#{msg['email']}"
+                                     a:type="email">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="email"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['senha']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="senha" value="#{clienteBean.cliente.senha}" class="form-control"   
+                                     validatorMessage="#{msg['senha']}"
+                                     a:type="password">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="senha"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <div class="col-sm-4"></div>  
+                    <div class="col-sm-4">  
+                        <div class="col-sm-2">
+                            <h:commandButton value="Salvar" action="#{clienteBean.salva()}" class="btn btn-success"   
+                                             style="width: 80px;"></h:commandButton>  
+                        </div> 
+                    </div>  
+                </div>  
+            </h:form>  
+        </div>
     </h:body>
 </html>
