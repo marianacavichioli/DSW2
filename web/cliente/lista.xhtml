@@ -1,13 +1,12 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xlmns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <h:head>
         <h:outputStylesheet name="estilo.css"/>
-        
+
         <title>#{msg['aluguel']}</title>
 
         <div class= "header">
@@ -18,85 +17,85 @@
     </h:head>
 
     <h:body>
-       <div class ='botoes'>
+        <div class ='botoes'>
             <ul>
                 <!-- nao sei se os links funcionam, nao parece ser assim que usa -->
-                <li><h:commandLink action="../locadora_crud/cadastro">#{msg['cadastro_locadora']}</h:commandLink></li>
+                <li><h:commandLink action="#">#{msg['cadastro_locadora']}</h:commandLink></li>
                 <li><h:commandLink action="#">#{msg['lista_locadora']}</h:commandLink></li>
-                <li><h:commandLink action="#">#{msg['cadastro_cliente']}</h:commandLink></li>
-                <li><h:commandLink action="#">#{msg['lista_cliente']}</h:commandLink></li>
+                <li><h:commandLink action="#{listaClientes.cadastra}">#{msg['cadastro_cliente']}</h:commandLink></li>
+                <li><h:commandLink action="#{listaClientes.lista}">#{msg['lista_cliente']}</h:commandLink></li>
                 <li><h:commandLink action="logout">Logout</h:commandLink></li>
             </ul>
         </div>
-    
+
         <div class='conteudo'>
-         
-        <h:form>
-            <h:dataTable id="lista_clientes"
-                         summary="#{msg['lista_cliente']}"
-                         value="#"  <!-- acho que eh aqui que coloca de onde ta pegando a lista -->
-                         var="lista_clientes">
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="ID"/>
-                    </f:facet>
-                    <h:outputText id="idCliente" value="#{cliente.id}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['nome']}/>
-                    </f:facet>
-                    <h:outputText id="nomeCliente" value="#{cliente.nome}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['telefone']}/>
-                    </f:facet>
-                    <h:outputText id="telefoneCliente" value="#{cliente.telefone}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['data_nascimento']}/>
-                    </f:facet>
-                    <h:outputText id="dataCliente" value="#{cliente.data_nascimento}" />
-                </h:column>
-                         
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['sexo']}/>
-                    </f:facet>
-                    <h:outputText id="sexoCliente" value="#{cliente.sexo}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="E-mail"/>
-                    </f:facet>
-                    <h:outputText id="emailCliente" value="#{cliente.email}" />
-                </h:column>
-                         
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['ativo']}/>
-                    </f:facet>
-                    <h:outputText id="ativoCliente" value="#{cliente.ativo}" />
-                </h:column>
-                
-            </h:dataTable> 
-        </h:form>
-        
-        <!-- TO DO: ver como colocar os botoes de edicao e remocao
-                          
-                    <td><a href="edicao?id=<c:out value='${cliente.id}' />"><fmt:message key="editar"/></a>                        
-                        &nbsp;&nbsp;&nbsp;&nbsp;                        
-                        <a href="remocao?id=<c:out value='${cliente.id}' />
-                           "onclick="return confirm('Tem certeza de que deseja excluir este item?');">
-                            <fmt:message key="remover"/>
-                        </a></td>                
-                </tr>  -->                 
+            <h:form>
+                <h:dataTable id="lista_clientes"
+                             summary="#{msg['lista_cliente']}"
+                             value="#{clienteBean.clientes}"
+                             var="cliente"> 
+                    
+                    <h:column>
+                        <f:facet name="header">#{msg['id']}</f:facet>
+                        <h:outputText id="idCliente" value="#{cliente.id}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['nome']}</f:facet>                        
+                        <h:outputText id="nomeCliente" value="#{cliente.nome}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['telefone']}</f:facet>                        
+                        <h:outputText id="telefoneCliente" value="#{cliente.telefone}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['data_nascimento']}</f:facet>
+                        <h:outputText id="dataCliente" value="#{cliente.data_nascimento}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['sexo']}</f:facet>
+                        <h:outputText id="sexoCliente" value="#{cliente.sexo}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['email']}</f:facet>
+                        <h:outputText id="emailCliente" value="#{cliente.email}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['ativo']}</f:facet>
+                        <h:outputText id="ativoCliente" value="#{cliente.ativo}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:commandButton action = "#{clienteBean.edita(cliente.id)}" value="Edição" class="btn btn-primary">
+                        </h:commandButton>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:commandButton action = "#{clienteBean.delete(cliente)}" value="Remoção"
+                                         onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                         class="btn btn-danger">
+                        </h:commandButton>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+
+            <!-- TO DO: ver como colocar os botoes de edicao e remocao
+                              
+                        <td><a href="edicao?id=<c:out value='${cliente.id}' />"><fmt:message key="editar"/></a>                        
+                            &nbsp;&nbsp;&nbsp;&nbsp;                        
+                            <a href="remocao?id=<c:out value='${cliente.id}' />
+                               "onclick="return confirm('Tem certeza de que deseja excluir este item?');">
+                                <fmt:message key="remover"/>
+                            </a></td>                
+                    </tr>  -->  
+        </div>
     </h:body>
 </html>
