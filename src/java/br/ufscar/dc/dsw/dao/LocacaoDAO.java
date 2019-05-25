@@ -25,7 +25,7 @@ public class LocacaoDAO extends GenericDAO<Locacao>{
 
     public List<Locacao> getAll() {
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("select l from Locadora l", Locacao.class);
+        Query q = em.createQuery("select l from Locacao l", Locacao.class);
         List<Locacao> locacao = q.getResultList();
         em.close();
         return locacao;

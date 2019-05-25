@@ -5,7 +5,6 @@ import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 
 @Entity
-@Cacheable(value = false)
 public class Locadora extends Usuario implements Serializable{
     
     private Long id;

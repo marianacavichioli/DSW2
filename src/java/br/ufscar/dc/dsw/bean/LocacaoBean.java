@@ -26,7 +26,7 @@ public class LocacaoBean implements Serializable{
     public String edita(Long id) {
         LocacaoDAO dao = new LocacaoDAO();
         locacao = dao.get(id);
-        return "locacao/formulario.xhtml";
+        return "formulario.xhtml";
     }
 
     public String salva() {
@@ -46,7 +46,7 @@ public class LocacaoBean implements Serializable{
     }
 
     public String volta() {
-        return "/index.xhtml?faces-redirect=true";
+        return "/lista.xhtml?faces-redirect=true";
     }
 
     public List<Locacao> getLocacoes() throws SQLException {

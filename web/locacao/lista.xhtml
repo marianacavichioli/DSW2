@@ -21,11 +21,11 @@
             <ul>
                 <h:form>
                     <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
-                    <li><h:commandLink action="#">#{msg['cadastro_locacao']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locacaoBean.cadastra()}">#{msg['cadastro_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
-                    <li><h:commandLink action="#">#{msg['lista_locacao']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locacaoBean.lista()}">#{msg['lista_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasRole('ADMIN')"> -->
@@ -45,7 +45,7 @@
                 <h3>#{msg['lista_locacao']}</h3>
                 <h:dataTable id="lista_locacoes"
                              summary="#{msg['lista_locacao']}"
-                             value="#{locacaoBean.locacao}"
+                             value="#{locacaoBean.locacoes}"
                              var="locacao"> 
 
                     <h:column>
@@ -54,12 +54,17 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">#{msg['cpf_cliente']}</f:facet>                        
+                        <h:outputText id="cpf_clienteLocacao" value="#{locacao.cpf_cliente}" />
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">#{msg['cnpj_locadora']}</f:facet>                        
                         <h:outputText id="cnpj_locadoraLocacao" value="#{locacao.cnpj_locadora}" />
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{msg['dia']}</f:facet>                        
+                        <f:facet name="header">#{msg['dia']}</f:facet>
                         <h:outputText id="diaLocacao" value="#{locacao.dia}" />
                     </h:column>
 
@@ -67,7 +72,7 @@
                         <f:facet name="header">#{msg['hora']}</f:facet>
                         <h:outputText id="horaLocacao" value="#{locacao.hora}" />
                     </h:column>
-                    
+
                     <h:column>
                         <f:facet name="header">Edição</f:facet>
                         <h:commandButton action = "#{locacaoBean.edita(locacao.id)}" value="Edição" class="btn btn-primary">
