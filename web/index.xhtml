@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!--TO DO: ver como adiciona as tags de segurança pra acesso -->
 
@@ -30,8 +31,8 @@
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasRole('ADMIN')"> -->
-                    <li><h:commandLink action="#">#{msg['cadastro_locadora']}</h:commandLink></li>
-                    <li><h:commandLink action="#">#{msg['lista_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.cadastra()}">#{msg['cadastro_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
                     <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
                     <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
@@ -46,46 +47,55 @@
                 <label for="busca">#{msg['pesquisa_cidade']}</label>
                 <input type="search" id="busca" name="busca"></input>
                 <button type="submit">OK</button>
-                <form>
-                    <h3>#{msg['lista_locadora']}</h3>
-                    <table style="width:80%">                       
-                        <tr>                
-                            <th>#{msg['nome']}</th>                
-                            <th>CNPJ</th>                
-                            <th>#{msg['telefone']}</th>                
-                            <th>#{msg['cidade']}</th>  
-                            <th>E-mail</th>
-                        </tr>    
-
-
-                        <!-- <%! static LocadoraDAO locadoraDAO = new LocadoraDAO();
-                            static List<Locadora> listaLocadoras = locadoraDAO.getAll();
-                            static int i = 0;
-                            static int id_locacao = 0;
-                        %> -->
-
-
-                        <!-- <% for (i = 0; i < listaLocadoras.size(); i++) { %>
-                        <tr>
-                            <td> <% out.println(listaLocadoras.get(i).getId());%></td>
-                            <td> <% out.println(listaLocadoras.get(i).getNome());%></td>
-                            <td> <% out.println(listaLocadoras.get(i).getCnpj());%></td>
-                            <td> <% out.println(listaLocadoras.get(i).getCidade());%></td>
-                            <td> <% out.println(listaLocadoras.get(i).getEmail());%></td>
-                            <% id_locacao = listaLocadoras.get(i).getId();
-                                    System.out.println(id_locacao);%>
-                            <td><a href="edicao?id=<%=id_locacao%> "><fmt:message key="editar"/></a>                        
-                                &nbsp;&nbsp;&nbsp;&nbsp;                        
-                                <a href="remocao?id=<%=id_locacao%>
-                                   "onclick="return confirm('Tem certeza de que deseja excluir este item?');">
-                                    <fmt:message key="remover"/>
-                                </a></td>                
-                        </tr>  
-                        </tr>
-                        <%}%> -->
-                    </table>  
-                </form>
             </form>
+                <h:form>
+                    <h3>#{msg['lista_locadora']}</h3>
+                    <h:dataTable id="lista_locadoras"
+                                 summary="#{msg['lista_locadora']}"
+                                 value="#{locadoraBean.locadoras}"
+                                 var="locadora"> 
+
+                        <h:column>
+                            <f:facet name="header">#{msg['id']}</f:facet>
+                            <h:outputText id="idLocadora" value="#{locadora.id}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{msg['nome']}</f:facet>                        
+                            <h:outputText id="nomeLocadora" value="#{locadora.nome}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{msg['cnpj']}</f:facet>                        
+                            <h:outputText id="cnpjLocadora" value="#{locadora.cnpj}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{msg['cidade']}</f:facet>
+                            <h:outputText id="cidadeLocadora" value="#{locadora.cidade}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{msg['email']}</f:facet>
+                            <h:outputText id="emailLocadora" value="#{locadora.email}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Edição</f:facet>
+                            <h:commandButton action = "#{locadoraBean.edita(locadora.id)}" value="Edição" class="btn btn-primary">
+                            </h:commandButton>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Remoção</f:facet>
+                            <h:commandButton action = "#{locadoraBean.delete(locadora)}" value="Remoção"
+                                             onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                             class="btn btn-danger">
+                            </h:commandButton>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
         </div>
     </h:body>
 </html>

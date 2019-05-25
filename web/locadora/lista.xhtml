@@ -2,12 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xlmns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <h:head>
-        <h:outputStylesheet name="estilo.css"/>
-        
+        <h:outputStylesheet library="css" name="estilo.css"/>
+
         <title>#{msg['aluguel']}</title>
 
         <div class= "header">
@@ -18,73 +17,84 @@
     </h:head>
 
     <h:body>
-       <div class ='botoes'>
-            <ul>       
-                <!-- nao sei se os links funcionam, nao parece ser assim que usa -->
-                <li><h:commandLink action="#">#{msg['cadastro_locadora']}</h:commandLink></li>
-                <li><h:commandLink action="#">#{msg['lista_locadora']}</h:commandLink></li>
-                <li><h:commandLink action="#">#{msg['cadastro_cliente']}</h:commandLink></li>
-                <li><h:commandLink action="#">#{msg['lista_cliente']}</h:commandLink></li>
-                <li><h:commandLink action="logout">Logout</h:commandLink></li>
-                
+        <div class ='botoes'>
+            <ul>
+                <h:form>
+                    <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
+                    <li><h:commandLink action="#">#{msg['cadastro_locacao']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
+                    <li><h:commandLink action="#">#{msg['lista_locacao']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <!-- <sec:authorize access="hasRole('ADMIN')"> -->
+                    <li><h:commandLink action="#{locadoraBean.cadastra()}">#{msg['cadastro_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <li><h:commandLink action="logout">Logout</h:commandLink></li>
+                </h:form>
             </ul>
         </div>
-    
-        <div class='conteudo'>
-            
-             <form action="pesquisa" method="post">
+
+        <div class ='conteudo'>
+            <form action="pesquisa" method="post">
                 <label for="busca">#{msg['pesquisa_cidade']}</label>
-                <input type="search" id="busca" name="busca">
+                <input type="search" id="busca" name="busca"></input>
                 <button type="submit">OK</button>
             </form>
-                
-            <h:form>
-            <!-- aqui coloca o valor da locadora se pa, ta num exemplo mas n entendi direito -->
-            <h:dataTable id="lista_locadora"
-                         summary="#{msg['lista_locadora']}"
-                         value="#"
-                         var="lista_locadora">
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="ID"/>
-                    </f:facet>
-                    <h:outputText id="idLocadora" value="#{locadora.id}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['nome']}/>
-                    </f:facet>
-                    <h:outputText id="nomeLocadora" value="#{locadora.nome}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="CNPJ"/>
-                    </f:facet>
-                    <h:outputText id="cnpjLocacao" value="#{locadora.cnpj}" />
-                </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['cidade']}/>
-                    </f:facet>
-                    <h:outputText id="cidadeLocadora" value="#{locadora.cidade}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value=#{msg['email']}/>
-                    </f:facet>
-                    <h:outputText id="emailLocadora" value="#{locadora.email}" />
-                </h:column>
-                            
-            </h:dataTable> 
-        </h:form>
-            
-        <!-- TO DO: botoes de remocao e edicao -->
-               
+            <h:form>
+                <h3>#{msg['lista_locadora']}</h3>
+                <h:dataTable id="lista_locadoras"
+                             summary="#{msg['lista_locadora']}"
+                             value="#{locadoraBean.locadoras}"
+                             var="locadora"> 
+
+                    <h:column>
+                        <f:facet name="header">#{msg['id']}</f:facet>
+                        <h:outputText id="idLocadora" value="#{locadora.id}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['nome']}</f:facet>                        
+                        <h:outputText id="nomeLocadora" value="#{locadora.nome}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['cnpj']}</f:facet>                        
+                        <h:outputText id="cnpjLocadora" value="#{locadora.cnpj}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['cidade']}</f:facet>
+                        <h:outputText id="cidadeLocadora" value="#{locadora.cidade}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg['email']}</f:facet>
+                        <h:outputText id="emailLocadora" value="#{locadora.email}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Edição</f:facet>
+                        <h:commandButton action = "#{locadoraBean.edita(locadora.id)}" value="Edição" class="btn btn-primary">
+                        </h:commandButton>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Remoção</f:facet>
+                        <h:commandButton action = "#{locadoraBean.delete(locadora)}" value="Remoção"
+                                         onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                         class="btn btn-danger">
+                        </h:commandButton>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
         </div>
-</body>
+    </h:body>
 </html>

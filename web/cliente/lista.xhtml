@@ -42,6 +42,7 @@
 
         <div class='conteudo'>
             <h:form>
+                <h3>#{msg['lista_cliente']}</h3>
                 <h:dataTable id="lista_clientes"
                              summary="#{msg['lista_cliente']}"
                              value="#{clienteBean.clientes}"
@@ -98,16 +99,6 @@
 
                 </h:dataTable>
             </h:form>
-
-            <!-- TO DO: ver como colocar os botoes de edicao e remocao
-                              
-                        <td><a href="edicao?id=<c:out value='${cliente.id}' />"><fmt:message key="editar"/></a>                        
-                            &nbsp;&nbsp;&nbsp;&nbsp;                        
-                            <a href="remocao?id=<c:out value='${cliente.id}' />
-                               "onclick="return confirm('Tem certeza de que deseja excluir este item?');">
-                                <fmt:message key="remover"/>
-                            </a></td>                
-                    </tr>  -->  
         </div>
     </h:body>
 </html>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"  
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">  
+
+    <h:head>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+
+        <title>#{msg['aluguel']}</title>
+
+        <div class= "header">
+            <center>
+                <h1>#{msg['aluguel']}</h1>
+            </center>
+        </div>
+    </h:head>
+    <h:body>
+        <div class ='botoes'>
+            <ul>
+                <h:form>
+                    <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
+                    <li><h:commandLink action="#{locacaoBean.cadastra()}">#{msg['cadastro_locacao']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
+                    <li><h:commandLink action="#{locacaoBean.lista()}">#{msg['lista_locacao']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <!-- <sec:authorize access="hasRole('ADMIN')"> -->
+                    <li><h:commandLink action="#{locadoraBean.cadastra()}">#{msg['cadastro_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
+                    <!-- </sec:authorize> -->
+
+                    <li><h:commandLink action="logout">Logout</h:commandLink></li>
+                </h:form>
+            </ul>
+        </div>
+
+        <div class ='conteudo'>
+            <h:form id="form" class="form-horizontal">
+                <div class="form-group">  
+                    <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['nome']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="nome" value="#{locadoraBean.locadora.nome}" class="form-control"   
+                                     validatorMessage="#{msg['nome']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="nome"/>
+                    </div>  
+                </div>  
+
+                <div class="form-group">  
+                    <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['cnpj']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="cnpj" value="#{locadoraBean.locadora.cnpj}" class="form-control"   
+                                     validatorMessage="#{msg['cnpj']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="cnpj"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="cidade" class="control-label col-sm-4">#{msg['cidade']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="cidade" value="#{locadoraBean.locadora.cidade}" class="form-control"   
+                                     validatorMessage="#{msg['cidade']}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="cidade"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="email" class="control-label col-sm-4">#{msg['email']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="email" value="#{locadoraBean.locadora.email}" class="form-control"   
+                                     validatorMessage="#{msg['email']}"
+                                     a:type="email">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="email"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['senha']}</h:outputLabel>  
+                    <div class="col-sm-4">  
+                        <h:inputText id="senha" value="#{locadoraBean.locadora.senha}" class="form-control"   
+                                     validatorMessage="#{msg['senha']}"
+                                     a:type="password">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="senha"/>
+                    </div>  
+                </div>
+
+                <div class="form-group">  
+                    <div class="col-sm-4"></div>  
+                    <div class="col-sm-4">  
+                        <div class="col-sm-2">
+                            <h:commandButton value="Salvar" action="#{locadoraBean.salva()}" class="btn btn-success"   
+                                             style="width: 80px;"></h:commandButton>  
+                        </div> 
+                    </div>  
+                </div>  
+            </h:form>  
+        </div>
+    </h:body>
+</html>

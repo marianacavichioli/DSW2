@@ -5,7 +5,11 @@ import br.ufscar.dc.dsw.pojo.Locadora;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
+@ManagedBean
+@SessionScoped
 public class LocadoraBean implements Serializable{
     
     private Locadora locadora;
@@ -32,17 +36,17 @@ public class LocadoraBean implements Serializable{
         } else {
             dao.update(locadora);
         }
-        return "locadora/lista.xhtml";
+        return "lista.xhtml";
     }
 
     public String delete(Locadora locadora) {
         LocadoraDAO dao = new LocadoraDAO();
         dao.delete(locadora);
-        return "locadora/lista.xhtml";
+        return "lista.xhtml";
     }
 
     public String volta() {
-        return "/index.xhtml?faces-redirect=true";
+        return "/lista.xhtml?faces-redirect=true";
     }
 
     public List<Locadora> getLocadoras() throws SQLException {
