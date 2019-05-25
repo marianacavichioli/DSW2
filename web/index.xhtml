@@ -23,11 +23,11 @@
             <ul>
                 <h:form>
                     <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
-                    <li><h:commandLink action="#">#{msg['cadastro_locacao']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locacaoBean.cadastra()}">#{msg['cadastro_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
-                    <li><h:commandLink action="#">#{msg['lista_locacao']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locacaoBean.lista()}">#{msg['lista_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasRole('ADMIN')"> -->

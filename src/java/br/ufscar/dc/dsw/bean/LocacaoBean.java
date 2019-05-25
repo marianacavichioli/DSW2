@@ -5,7 +5,11 @@ import br.ufscar.dc.dsw.pojo.Locacao;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
+@ManagedBean
+@SessionScoped
 public class LocacaoBean implements Serializable{
     
     private Locacao locacao;
@@ -32,7 +36,7 @@ public class LocacaoBean implements Serializable{
         } else {
             dao.update(locacao);
         }
-        return "locacao/lista.xhtml";
+        return "lista.xhtml";
     }
 
     public String delete(Locacao locacao) {

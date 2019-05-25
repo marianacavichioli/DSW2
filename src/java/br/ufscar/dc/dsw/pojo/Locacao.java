@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Cacheable(value = false)
 public class Locacao implements Serializable{
 
     @Id
