@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">  
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">  
 
     <h:head>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -42,37 +43,33 @@
 
         <div class ='conteudo'>
             <h:form id="form" class="form-horizontal">
-                
-                <div class="form-group">  
+
+                <div class="form-group">
                     <h:outputLabel for="cpf_cliente" class="control-label col-sm-4">#{msg['cpf_cliente']}</h:outputLabel>  
-                    <div class="col-sm-4">  
-                        <h:inputText id="cpf_cliente" value="#{locacaoBean.locacao.cpf_cliente}" class="form-control"   
-                                     validatorMessage="#{msg['cpf_cliente']}">
-                            <f:validateRequired/>
-                        </h:inputText>
-                        <h:message for="cpf_cliente"/>
+                    <div class="col-sm-4">
+                        <p:selectOneMenu id="cpf_cliente" value="#{locacaoBean.locacao.cpf_cliente}">
+                            <f:selectItem itemLabel="Selecionar CPF" itemValue="" />
+                            <f:selectItems value="#{clienteBean.cpfsClientes}" />
+                        </p:selectOneMenu>
                     </div>  
-                </div>  
+                </div>
                 
-                <div class="form-group">  
+                <div class="form-group">
                     <h:outputLabel for="cnpj_locadora" class="control-label col-sm-4">#{msg['cnpj_locadora']}</h:outputLabel>  
-                    <div class="col-sm-4">  
-                        <h:inputText id="cnpj_locadora" value="#{locacaoBean.locacao.cnpj_locadora}" class="form-control"   
-                                     validatorMessage="#{msg['cnpj_locadora']}">
-                            <f:validateRequired/>
-                        </h:inputText>
-                        <h:message for="cnpj_locadora"/>
+                    <div class="col-sm-4">
+                        <p:selectOneMenu id="cnpj_locadora" value="#{locacaoBean.locacao.cnpj_locadora}">
+                            <f:selectItem itemLabel="Selecionar CNPJ" itemValue="" />
+                            <f:selectItems value="#{locadoraBean.cnpjsLocadoras}" />
+                        </p:selectOneMenu>
                     </div>  
-                </div>  
+                </div>
 
                 <div class="form-group">  
                     <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['dia']}</h:outputLabel>  
-                    <div class="col-sm-4">  
-                        <h:inputText id="dia" value="#{locacaoBean.locacao.dia}" class="form-control"   
-                                     validatorMessage="#{msg['dia']}"
-                                     a:type="Date">
-                            <f:validateRequired/>
-                        </h:inputText>
+                    <div class="col-sm-4"> 
+                        <p:inputMask id="date" value="#{locacaoBean.locacao.dia}" class="form-control"
+                                     mask="99/99/9999" 
+                                     validatorMessage="#{msg['dia']}"/>
                         <h:message for="dia"/>
                     </div>  
                 </div>
@@ -80,14 +77,13 @@
                 <div class="form-group">  
                     <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['hora']}</h:outputLabel>  
                     <div class="col-sm-4">  
-                        <h:inputText id="cidade" value="#{locacaoBean.locacao.hora}" class="form-control"   
-                                     validatorMessage="#{msg['hora']}">
-                            <f:validateRequired/>
-                        </h:inputText>
+                        <p:inputMask id="cidade" value="#{locacaoBean.locacao.hora}" class="form-control"
+                                     mask="99:99"
+                                     validatorMessage="#{msg['hora']}"/>
                         <h:message for="hora"/>
                     </div>  
                 </div>
-                
+
                 <div class="form-group">  
                     <div class="col-sm-4"></div>  
                     <div class="col-sm-4">  

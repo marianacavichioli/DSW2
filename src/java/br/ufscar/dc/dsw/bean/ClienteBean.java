@@ -5,6 +5,7 @@ import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.pojo.Cliente;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -54,6 +55,18 @@ public class ClienteBean implements Serializable{
     public List<Cliente> getClientes() throws SQLException {
         ClienteDAO dao = new ClienteDAO();
         return dao.getAll();
+    }
+    
+    public List<String> getCpfsClientes() throws SQLException {
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> clientes = dao.getAll();
+        ArrayList<String> cpfsClientes = new ArrayList();
+                
+        for(int i=0; i<clientes.size(); i++){
+            cpfsClientes.add(i, clientes.get(i).getCpf());
+        }
+                
+        return cpfsClientes;
     }
 
     public Cliente getCliente() {

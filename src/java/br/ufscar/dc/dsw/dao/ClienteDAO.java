@@ -25,7 +25,7 @@ public class ClienteDAO extends GenericDAO<Cliente>{
         em.close();
         return cliente;
     }
-
+    
     public void delete(Cliente cliente) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
