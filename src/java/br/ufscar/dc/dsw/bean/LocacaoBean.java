@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.swing.JOptionPane;
 
 @ManagedBean
 @SessionScoped
-public class LocacaoBean implements Serializable{
-    
+public class LocacaoBean implements Serializable {
+
     private Locacao locacao;
 
     public String lista() {
@@ -29,13 +30,44 @@ public class LocacaoBean implements Serializable{
         return "formulario.xhtml";
     }
 
-    public String salva() {
+    public String salva() throws SQLException {
         LocacaoDAO dao = new LocacaoDAO();
-        if (locacao.getId() == null) {
-            dao.save(locacao);
-        } else {
-            dao.update(locacao);
+        List<Locacao> listaLocacoes = getLocacoes();
+        boolean locar = true;
+
+        if (listaLocacoes.size() != 0) {
+            for (int i = 0; i < listaLocacoes.size(); i++) {
+                if (listaLocacoes.get(i).getCpf_cliente().equals(locacao.getCpf_cliente())
+                        && listaLocacoes.get(i).getDia().equals(locacao.getDia())) {
+
+                    int hora_locacao = Integer.parseInt(listaLocacoes.get(i).getHora().substring(0, 2));
+                    int hora_locacao_atual = Integer.parseInt(locacao.getHora().substring(0, 2));
+
+                    if (hora_locacao_atual == hora_locacao) {
+                        locar = false;
+                    }
+                } else if (listaLocacoes.get(i).getCnpj_locadora().equals(locacao.getCnpj_locadora())
+                        && listaLocacoes.get(i).getDia().equals(locacao.getDia())) {
+
+                    int hora_locacao = Integer.parseInt(listaLocacoes.get(i).getHora());
+                    int hora_locacao_atual = Integer.parseInt(locacao.getHora());
+                    if (hora_locacao_atual == hora_locacao) {
+                        locar = false;
+                    }
+                }
+            }
         }
+
+        if (locar == true) {
+            if (locacao.getId() == null) {
+                dao.save(locacao);
+            } else {
+                dao.update(locacao);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Não é possível cadastrar uma locação neste horário", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+        }
+
         return "lista.xhtml";
     }
 
@@ -57,5 +89,5 @@ public class LocacaoBean implements Serializable{
     public Locacao getLocacao() {
         return locacao;
     }
-    
+
 }
