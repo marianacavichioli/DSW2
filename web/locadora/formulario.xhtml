@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">  
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">  
 
     <h:head>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -56,10 +57,9 @@
                 <div class="form-group">  
                     <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['cnpj']}</h:outputLabel>  
                     <div class="col-sm-4">  
-                        <h:inputText id="cnpj" value="#{locadoraBean.locadora.cnpj}" class="form-control"   
-                                     validatorMessage="#{msg['cnpj']}">
-                            <f:validateRequired/>
-                        </h:inputText>
+                        <p:inputMask id="cnpj" value="#{locadoraBean.locadora.cnpj}" class="form-control"
+                                     mask="99.999.999/9999-99"
+                                     validatorMessage="#{msg['cnpj']}"/>
                         <h:message for="cnpj"/>
                     </div>  
                 </div>

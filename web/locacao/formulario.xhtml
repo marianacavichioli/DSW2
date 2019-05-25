@@ -66,12 +66,10 @@
 
                 <div class="form-group">  
                     <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['dia']}</h:outputLabel>  
-                    <div class="col-sm-4">  
-                        <h:inputText id="dia" value="#{locacaoBean.locacao.dia}" class="form-control"   
-                                     validatorMessage="#{msg['dia']}"
-                                     a:type="Date">
-                            <f:validateRequired/>
-                        </h:inputText>
+                    <div class="col-sm-4"> 
+                        <p:inputMask id="date" value="#{locacaoBean.locacao.dia}" class="form-control"
+                                     mask="99/99/9999" 
+                                     validatorMessage="#{msg['dia']}"/>
                         <h:message for="dia"/>
                     </div>  
                 </div>
@@ -79,10 +77,9 @@
                 <div class="form-group">  
                     <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['hora']}</h:outputLabel>  
                     <div class="col-sm-4">  
-                        <h:inputText id="cidade" value="#{locacaoBean.locacao.hora}" class="form-control"   
-                                     validatorMessage="#{msg['hora']}">
-                            <f:validateRequired/>
-                        </h:inputText>
+                        <p:inputMask id="cidade" value="#{locacaoBean.locacao.hora}" class="form-control"
+                                     mask="99:99"
+                                     validatorMessage="#{msg['hora']}"/>
                         <h:message for="hora"/>
                     </div>  
                 </div>
