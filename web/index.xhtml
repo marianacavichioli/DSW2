@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <!--TO DO: ver como adiciona as tags de segurança pra acesso -->
 
@@ -42,60 +43,78 @@
             </ul>
         </div>
 
-        <div class ='conteudo'>
-            <form action="pesquisa" method="post">
-                <label for="busca">#{msg['pesquisa_cidade']}</label>
-                <input type="search" id="busca" name="busca"></input>
-                <button type="submit">OK</button>
-            </form>
-                <h:form>
-                    <h3>#{msg['lista_locadora']}</h3>
-                    <h:dataTable id="lista_locadoras"
-                                 summary="#{msg['lista_locadora']}"
-                                 value="#{locadoraBean.locadoras}"
-                                 var="locadora"> 
+        <div class ='conteudo' var="cidadeLocadora">
+            
+<!--            Pesquisa não está funcionando ainda-->
+            <h:form id="form" class="form-horizontal">
+                    <div class="form-group">
+                        <h:outputLabel for="pesquisa_cidade" class="control-label col-sm-4">#{msg['pesquisa_cidade']}</h:outputLabel>  
+                        <div class="col-sm-4">
+                            <p:selectOneMenu id="pesquisa_cidade" value="#{cidadeLocadora}">
+                                <f:selectItem itemLabel="Selecionar" itemValue="" />
+                                <f:selectItems value="#{locadoraBean.cidades}" />
+                            </p:selectOneMenu>
+                        </div>  
+                    </div>
 
-                        <h:column>
-                            <f:facet name="header">#{msg['id']}</f:facet>
-                            <h:outputText id="idLocadora" value="#{locadora.id}" />
-                        </h:column>
+                    <div class="form-group">  
+                        <div class="col-sm-4">  
+                            <div class="col-sm-2">
+                                <h:commandButton value="Pesquisar" action="#{locadoraBean.pesquisar(cidadeLocadora)}" class="btn btn-success"   
+                                                 style="width: 80px;"></h:commandButton>  
+                            </div> 
+                        </div>  
+                    </div>
+            </h:form>
+            
+            <h:form>
+                <h3>#{msg['lista_locadora']}</h3>
+                <h:dataTable id="lista_locadoras"
+                             summary="#{msg['lista_locadora']}"
+                             value="#{locadoraBean.locadoras}"
+                             var="locadora"> 
 
-                        <h:column>
-                            <f:facet name="header">#{msg['nome']}</f:facet>                        
-                            <h:outputText id="nomeLocadora" value="#{locadora.nome}" />
-                        </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['id']}</f:facet>
+                        <h:outputText id="idLocadora" value="#{locadora.id}" />
+                    </h:column>
 
-                        <h:column>
-                            <f:facet name="header">#{msg['cnpj']}</f:facet>                        
-                            <h:outputText id="cnpjLocadora" value="#{locadora.cnpj}" />
-                        </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['nome']}</f:facet>                        
+                        <h:outputText id="nomeLocadora" value="#{locadora.nome}" />
+                    </h:column>
 
-                        <h:column>
-                            <f:facet name="header">#{msg['cidade']}</f:facet>
-                            <h:outputText id="cidadeLocadora" value="#{locadora.cidade}" />
-                        </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['cnpj']}</f:facet>                        
+                        <h:outputText id="cnpjLocadora" value="#{locadora.cnpj}" />
+                    </h:column>
 
-                        <h:column>
-                            <f:facet name="header">#{msg['email']}</f:facet>
-                            <h:outputText id="emailLocadora" value="#{locadora.email}" />
-                        </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['cidade']}</f:facet>
+                        <h:outputText id="cidadeLocadora" value="#{locadora.cidade}" />
+                    </h:column>
 
-                        <h:column>
-                            <f:facet name="header">Edição</f:facet>
-                            <h:commandButton action = "#{locadoraBean.edita(locadora.id)}" value="Edição" class="btn btn-primary">
-                            </h:commandButton>
-                        </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['email']}</f:facet>
+                        <h:outputText id="emailLocadora" value="#{locadora.email}" />
+                    </h:column>
 
-                        <h:column>
-                            <f:facet name="header">Remoção</f:facet>
-                            <h:commandButton action = "#{locadoraBean.delete(locadora)}" value="Remoção"
-                                             onclick="return confirm('Tem certeza de que deseja excluir este item?');"
-                                             class="btn btn-danger">
-                            </h:commandButton>
-                        </h:column>
+                    <h:column>
+                        <f:facet name="header">Edição</f:facet>
+                        <h:commandButton action = "#{locadoraBean.edita(locadora.id)}" value="Edição" class="btn btn-primary">
+                        </h:commandButton>
+                    </h:column>
 
-                    </h:dataTable>
-                </h:form>
+                    <h:column>
+                        <f:facet name="header">Remoção</f:facet>
+                        <h:commandButton action = "#{locadoraBean.delete(locadora)}" value="Remoção"
+                                         onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                         class="btn btn-danger">
+                        </h:commandButton>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
         </div>
     </h:body>
 </html>

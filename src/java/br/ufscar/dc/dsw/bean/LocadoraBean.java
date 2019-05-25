@@ -68,6 +68,32 @@ public class LocadoraBean implements Serializable{
                 
         return cnpjsLocadoras;
     }
+    
+    public List<String> getCidades() throws SQLException {
+        LocadoraDAO dao = new LocadoraDAO();
+        List<Locadora> locadora = dao.getAll();
+        ArrayList<String> cidades = new ArrayList();
+                
+        for(int i=0; i<locadora.size(); i++){
+            cidades.add(i, locadora.get(i).getCidade());
+        }
+                
+        return cidades;
+    }
+    
+    public String pesquisar(String cidade) throws SQLException {
+        LocadoraDAO dao = new LocadoraDAO();
+        List<Locadora> locadora = dao.getAll();
+        ArrayList<Locadora> locadoras = new ArrayList();
+        
+        for(int i=0; i<locadora.size(); i++){
+            if(locadora.get(i).getCidade().equals(cidade)){
+                locadoras.add(locadora.get(i));
+            }
+        }
+        
+        return "lista.xhtml";
+    }
 
     public Locadora getLocadora() {
         return locadora;
