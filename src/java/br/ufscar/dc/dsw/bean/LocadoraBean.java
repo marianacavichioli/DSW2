@@ -2,18 +2,24 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.ClienteDAO;
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
+import br.ufscar.dc.dsw.dao.PapelDAO;
 import br.ufscar.dc.dsw.pojo.Cliente;
 import br.ufscar.dc.dsw.pojo.Locadora;
+import br.ufscar.dc.dsw.pojo.Papel;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @ManagedBean
 @SessionScoped
 public class LocadoraBean implements Serializable{
+    
+    private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
     
     private Locadora locadora;
 
@@ -34,8 +40,20 @@ public class LocadoraBean implements Serializable{
 
     public String salva() {
         LocadoraDAO dao = new LocadoraDAO();
+        PapelDAO papelDAO = new PapelDAO();
+        
+        locadora.setSenha(encoder.encode(locadora.getSenha()));
+        locadora.setAtivo(1);
+        
+        Papel p1 = new Papel();
+        p1.setNome("ROLE_LOCADORA");
+        papelDAO.save(p1);
+        
         if (locadora.getId() == null) {
             dao.save(locadora);
+            
+            locadora.getPapel().add(p1);
+            dao.update(locadora);
         } else {
             dao.update(locadora);
         }

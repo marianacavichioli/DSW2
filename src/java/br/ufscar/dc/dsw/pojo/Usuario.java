@@ -2,11 +2,13 @@
 package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Cacheable(value = false)
@@ -18,6 +20,9 @@ public class Usuario implements Serializable{
     private String email;
     private String senha;
     private int ativo;
+    
+    @ManyToMany
+    private List<Papel> papel;
    
     public Long getId() {
         return id;
@@ -49,6 +54,14 @@ public class Usuario implements Serializable{
 
     public void setAtivo(int ativo) {
         this.ativo = ativo;
+    }
+    
+    public List<Papel> getPapel() {
+        return papel;
+    }
+
+    public void setPapel(List<Papel> papel) {
+        this.papel = papel;
     }
 }
 

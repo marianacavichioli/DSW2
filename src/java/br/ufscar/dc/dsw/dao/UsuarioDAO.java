@@ -12,8 +12,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO<Usuario>{
+    
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     
     @Override
     public void save(Usuario usuario) {
@@ -42,7 +45,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         tx.commit();
     }
 
-    public void update(Usuario usuario) {         
+    public void update(Usuario usuario) {    
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
