@@ -26,14 +26,14 @@
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
-                    <li><h:commandLink action="#{locacaoBean.lista()}">#{msg['lista_locacao']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locacaoBean.listaBusca()}">#{msg['lista_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasRole('ADMIN')"> -->
-                    <li><h:commandLink action="#{locadoraBean.cadastra()}">#{msg['cadastro_locadora']}</h:commandLink></li>
-                    <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
-                    <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
-                    <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.formularioExterno()}">#{msg['cadastro_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.listaExterno()}">#{msg['lista_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.formularioExterno()}">#{msg['cadastro_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.listaExterno()}">#{msg['lista_cliente']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <li><h:commandLink action="logout">Logout</h:commandLink></li>
@@ -45,7 +45,7 @@
             <h:form id="form" class="form-horizontal">
 
                 <div class="form-group">
-                    <h:outputLabel for="cpf_cliente" class="control-label col-sm-4">#{msg['cpf_cliente']}</h:outputLabel>  
+                    <h:outputLabel for="cpf_cliente" class="control-label col-sm-4">#{msg['cpf']}</h:outputLabel>  
                     <div class="col-sm-4">
                         <p:selectOneMenu id="cpf_cliente" value="#{locacaoBean.locacao.cpf_cliente}">
                             <f:selectItem itemLabel="Selecionar CPF" itemValue="" />
@@ -65,21 +65,21 @@
                 </div>
 
                 <div class="form-group">  
-                    <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['dia']}</h:outputLabel>  
+                    <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['data']}</h:outputLabel>  
                     <div class="col-sm-4"> 
                         <p:inputMask id="date" value="#{locacaoBean.locacao.dia}" class="form-control"
                                      mask="99/99/9999" 
-                                     validatorMessage="#{msg['dia']}"/>
+                                     validatorMessage="#{msg['data']}"/>
                         <h:message for="dia"/>
                     </div>  
                 </div>
 
                 <div class="form-group">  
-                    <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['hora']}</h:outputLabel>  
+                    <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['horario']}</h:outputLabel>  
                     <div class="col-sm-4">  
                         <p:inputMask id="cidade" value="#{locacaoBean.locacao.hora}" class="form-control"
                                      mask="99:00"
-                                     validatorMessage="#{msg['hora']}"/>
+                                     validatorMessage="#{msg['horario']}"/>
                         <h:message for="hora"/>
                     </div>  
                 </div>

@@ -21,7 +21,7 @@
             <ul>
                 <h:form>
                     <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
-                    <li><h:commandLink action="#{locacaoBean.cadastra()}">#{msg['cadastro_locacao']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locacaoBean.formulario()}">#{msg['cadastro_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
@@ -29,10 +29,10 @@
                     <!-- </sec:authorize> -->
 
                     <!-- <sec:authorize access="hasRole('ADMIN')"> -->
-                    <li><h:commandLink action="#{locadoraBean.cadastra()}">#{msg['cadastro_locadora']}</h:commandLink></li>
-                    <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
-                    <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
-                    <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.formularioExterno()}">#{msg['cadastro_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{locadoraBean.listaExterno()}">#{msg['lista_locadora']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.formularioExterno()}">#{msg['cadastro_cliente']}</h:commandLink></li>
+                    <li><h:commandLink action="#{clienteBean.listaExterno()}">#{msg['lista_cliente']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
 
                     <li><h:commandLink action="logout">Logout</h:commandLink></li>
@@ -54,7 +54,7 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{msg['cpf_cliente']}</f:facet>                        
+                        <f:facet name="header">#{msg['cpf']}</f:facet>                        
                         <h:outputText id="cpf_clienteLocacao" value="#{locacao.cpf_cliente}" />
                     </h:column>
 
@@ -64,25 +64,25 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{msg['dia']}</f:facet>
+                        <f:facet name="header">#{msg['data']}</f:facet>
                         <h:outputText id="diaLocacao" value="#{locacao.dia}" />
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{msg['hora']}</f:facet>
+                        <f:facet name="header">#{msg['horario']}</f:facet>
                         <h:outputText id="horaLocacao" value="#{locacao.hora}" />
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Edição</f:facet>
+                        <f:facet name="header">#{msg['editar']}</f:facet>
                         <h:commandButton action = "#{locacaoBean.edita(locacao.id)}" value="Edição" class="btn btn-primary">
                         </h:commandButton>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Remoção</f:facet>
+                        <f:facet name="header">#{msg['remover']}</f:facet>
                         <h:commandButton action = "#{locacaoBean.delete(locacao)}" value="Remoção"
-                                         onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                         onclick="return confirm(#{msg['msg_remocao']});"
                                          class="btn btn-danger">
                         </h:commandButton>
                     </h:column>

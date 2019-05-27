@@ -18,6 +18,22 @@ public class LocacaoBean implements Serializable {
     public String lista() {
         return "locacao/lista.xhtml";
     }
+      
+    public String listaBusca() {
+        return "lista.xhtml";
+    }
+    
+    public String formulario() {
+        return "formulario.xhtml";
+    }
+    
+    public String formularioExterno() {
+        return "/locacao/formulario.xhtml";
+    }
+    
+    public String listaExterno() {
+        return "/locacao/lista.xhtml";
+    }
 
     public String cadastra() {
         locacao = new Locacao();

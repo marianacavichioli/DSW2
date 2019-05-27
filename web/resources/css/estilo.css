@@ -16,7 +16,6 @@ table, th, td {
 }
 
 .button {
-    background-color:#2a2b2d;
     -moz-border-radius:28px;
     -webkit-border-radius:28px;
     border-radius:28px;
@@ -59,7 +58,21 @@ table, th, td {
 }
 
 
-.botoes li a:link, #navigation li a:visited {
+.botoes li a:link, #navigation li a:visited { 
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #2a2b2d;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Verdana;
+    font-size:17px;
+    padding:16px 31px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+    
+    background-color: #2a2b2d;
     margin-top: 15px;
     display: block;
     padding: 5px 5px 5px 0.5em;
@@ -85,4 +98,8 @@ table, th, td {
     padding-top: 50px;
     padding-bottom: 50px;
     color: white;
+}
+
+form#j_idt37{
+    width: 80%;
 }
