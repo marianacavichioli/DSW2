@@ -25,6 +25,22 @@ public class ClienteBean implements Serializable{
         return "cliente/lista.xhtml";
     }
     
+    public String listaBusca() {
+        return "lista.xhtml";
+    }
+    
+    public String formularioExterno() {
+        return "/cliente/formulario.xhtml";
+    }
+    
+    public String listaExterno() {
+        return "/cliente/lista.xhtml";
+    }
+    
+    public String formulario() {
+        return "formulario.xhtml";
+    }
+    
     public String cadastra() {
         cliente = new Cliente();
         return "cliente/formulario.xhtml";

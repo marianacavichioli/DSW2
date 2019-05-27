@@ -30,9 +30,21 @@ public class LocadoraBean implements Serializable {
     public String getCidade() {
         return cidade;
     }
+    
+    public String formularioExterno() {
+        return "/locadora/formulario.xhtml";
+    }
+    
+    public String listaExterno() {
+        return "/locadora/lista.xhtml";
+    }
 
     public String lista() {
         return "locadora/lista.xhtml";
+    }
+    
+    public String formulario() {
+        return "formulario.xhtml";
     }
 
     public String listaBusca() {

@@ -74,7 +74,7 @@
                              var="locadora"> 
 
                     <h:column>
-                        <f:facet name="header">#{msg['id']}</f:facet>
+                        <f:facet name="header">ID</f:facet>
                         <h:outputText id="idLocadora" value="#{locadora.id}" />
                     </h:column>
 
@@ -84,7 +84,7 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{msg['cnpj']}</f:facet>                        
+                        <f:facet name="header">CNPJ</f:facet>                        
                         <h:outputText id="cnpjLocadora" value="#{locadora.cnpj}" />
                     </h:column>
 
@@ -94,20 +94,20 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{msg['email']}</f:facet>
+                        <f:facet name="header">E-mail</f:facet>
                         <h:outputText id="emailLocadora" value="#{locadora.email}" />
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Edição</f:facet>
+                        <f:facet name="header">#{msg['editar']}</f:facet>
                         <h:commandButton action = "#{locadoraBean.edita(locadora.id)}" value="Edição" class="btn btn-primary">
                         </h:commandButton>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Remoção</f:facet>
+                        <f:facet name="header">#{msg['remover']}</f:facet>
                         <h:commandButton action = "#{locadoraBean.delete(locadora)}" value="Remoção"
-                                         onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                         onclick="return confirm(#{msg['msg_remocao']});"
                                          class="btn btn-danger">
                         </h:commandButton>
                     </h:column>
