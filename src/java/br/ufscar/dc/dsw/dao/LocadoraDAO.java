@@ -16,8 +16,8 @@ import javax.persistence.Query;
  *
  * @author mariana
  */
-public class LocadoraDAO extends GenericDAO<Locadora>{
-    
+public class LocadoraDAO extends GenericDAO<Locadora> {
+
     @Override
     public void save(Locadora locadora) {
         EntityManager em = this.getEntityManager();
@@ -45,7 +45,7 @@ public class LocadoraDAO extends GenericDAO<Locadora>{
         tx.commit();
     }
 
-    public void update(Locadora locadora) {         
+    public void update(Locadora locadora) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
@@ -60,5 +60,21 @@ public class LocadoraDAO extends GenericDAO<Locadora>{
         em.close();
         return locadora;
     }
+
+    public List<Locadora> getAllCidade(String cidade) {
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery("select l from Locadora l where l.cidade = '" + cidade + "'", Locadora.class);
+        List<Locadora> locadora = q.getResultList();
+        em.close();
+        return locadora;
+    }
     
+    public List<String> getCidades() {
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery("select l.cidade from Locadora l", Locadora.class);
+        List<String> cidade = q.getResultList();
+        em.close();
+        return cidade;
+    }
+
 }

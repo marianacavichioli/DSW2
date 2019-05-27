@@ -16,15 +16,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @ManagedBean
 @SessionScoped
-public class LocadoraBean implements Serializable{
-    
+public class LocadoraBean implements Serializable {
+
     private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    
     private Locadora locadora;
+    private String cidade;
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
 
     public String lista() {
         return "locadora/lista.xhtml";
+    }
+
+    public String listaBusca() {
+        return "lista.xhtml";
     }
 
     public String cadastra() {
@@ -41,17 +53,17 @@ public class LocadoraBean implements Serializable{
     public String salva() {
         LocadoraDAO dao = new LocadoraDAO();
         PapelDAO papelDAO = new PapelDAO();
-        
+
         locadora.setSenha(encoder.encode(locadora.getSenha()));
         locadora.setAtivo(1);
-        
+
         Papel p1 = new Papel();
         p1.setNome("ROLE_LOCADORA");
         papelDAO.save(p1);
-        
+
         if (locadora.getId() == null) {
             dao.save(locadora);
-            
+
             locadora.getPapel().add(p1);
             dao.update(locadora);
         } else {
@@ -72,44 +84,41 @@ public class LocadoraBean implements Serializable{
 
     public List<Locadora> getLocadoras() throws SQLException {
         LocadoraDAO dao = new LocadoraDAO();
-        return dao.getAll();
+        if (cidade == null || cidade.equals("")) {
+            return dao.getAll();
+        } else {
+            return dao.getAllCidade(cidade);
+        }
     }
-    
+
+    public List<String> getLocadorasCidades() throws SQLException {
+        LocadoraDAO dao = new LocadoraDAO();
+        return dao.getCidades();
+    }
+
     public List<String> getCnpjsLocadoras() throws SQLException {
         LocadoraDAO dao = new LocadoraDAO();
         List<Locadora> locadora = dao.getAll();
         ArrayList<String> cnpjsLocadoras = new ArrayList();
-                
-        for(int i=0; i<locadora.size(); i++){
+
+        for (int i = 0; i < locadora.size(); i++) {
             cnpjsLocadoras.add(i, locadora.get(i).getCnpj());
         }
-                
+
         return cnpjsLocadoras;
     }
-    
-    public List<String> getCidades() throws SQLException {
-        LocadoraDAO dao = new LocadoraDAO();
-        List<Locadora> locadora = dao.getAll();
-        ArrayList<String> cidades = new ArrayList();
-                
-        for(int i=0; i<locadora.size(); i++){
-            cidades.add(i, locadora.get(i).getCidade());
-        }
-                
-        return cidades;
-    }
-    
+
     public String pesquisar(String cidade) throws SQLException {
         LocadoraDAO dao = new LocadoraDAO();
         List<Locadora> locadora = dao.getAll();
         ArrayList<Locadora> locadoras = new ArrayList();
-        
-        for(int i=0; i<locadora.size(); i++){
-            if(locadora.get(i).getCidade().equals(cidade)){
+
+        for (int i = 0; i < locadora.size(); i++) {
+            if (locadora.get(i).getCidade().equals(cidade)) {
                 locadoras.add(locadora.get(i));
             }
         }
-        
+
         return "lista.xhtml";
     }
 
