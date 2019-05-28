@@ -26,4 +26,26 @@
         <artifactId>primefaces</artifactId>
         <version>7.0</version>
     </dependency>
+    
+        <error-page>
+        <error-code>403</error-code>
+        <location>/error.xhtml</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.xhtml</location>
+    </error-page>
+    
+	
+    <error-page> 
+        <exception-type>java.lang.Exception</exception-type> 
+        <location>/error.xhtml</location> 
+    </error-page> 
+    
+    <error-page> 
+        <exception-type>java.lang.NullPointerException</exception-type> 
+        <location>/error.xhtml</location> 
+    </error-page> 
+    
 </web-app>
