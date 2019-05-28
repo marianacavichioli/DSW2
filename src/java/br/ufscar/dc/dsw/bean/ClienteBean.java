@@ -20,6 +20,10 @@ public class ClienteBean implements Serializable{
     private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     
     private Cliente cliente;
+    
+    public String inicial(){
+        return "/index.xhtml";
+    }
 
     public String lista() {
         return "cliente/lista.xhtml";

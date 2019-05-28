@@ -20,6 +20,7 @@
         <div class ='botoes'>
             <ul>
                 <h:form>
+                    <li><h:commandLink action="#{clienteBean.inicial()}">#{msg['inicial']}</h:commandLink></li>
                     <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
                     <li><h:commandLink action="#{locacaoBean.formularioExterno()}">#{msg['cadastro_locacao']}</h:commandLink></li>
                     <!-- </sec:authorize> -->
