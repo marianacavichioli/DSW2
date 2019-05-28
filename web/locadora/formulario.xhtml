@@ -79,7 +79,8 @@
                     <h:outputLabel for="email" class="control-label col-sm-4">#{msg['email']}</h:outputLabel>  
                     <div class="col-sm-4">  
                         <h:inputText id="email" value="#{locadoraBean.locadora.email}" class="form-control"   
-                                     validatorMessage="#{msg['email']}"
+                                     validatorMessage="#{msg['validacao']}"
+                                     required="true"
                                      a:type="email">
                             <f:validateRequired/>
                         </h:inputText>
@@ -91,7 +92,8 @@
                     <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['senha']}</h:outputLabel>  
                     <div class="col-sm-4">  
                         <h:inputText id="senha" value="#{locadoraBean.locadora.senha}" class="form-control"   
-                                     validatorMessage="#{msg['senha']}"
+                                     validatorMessage="#{msg['validacao']}"
+                                     required="true"
                                      a:type="password">
                             <f:validateRequired/>
                         </h:inputText>
