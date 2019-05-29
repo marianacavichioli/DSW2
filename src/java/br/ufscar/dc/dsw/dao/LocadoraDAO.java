@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -75,6 +76,13 @@ public class LocadoraDAO extends GenericDAO<Locadora> {
         List<String> cidade = q.getResultList();
         em.close();
         return cidade;
+    }
+    
+    public String getCnpj(Long id){
+        EntityManager em = this.getEntityManager();
+        TypedQuery <Locadora> q = em.createQuery("SELECT l FROM Locadora l, Usuario u WHERE l.id = '" + id + "' and l.id = u.id", Locadora.class);
+        Locadora l = q.getSingleResult();
+        return l.getCnpj();
     }
 
 }

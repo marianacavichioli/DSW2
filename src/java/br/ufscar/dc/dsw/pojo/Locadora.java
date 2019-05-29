@@ -11,18 +11,9 @@ import javax.persistence.UniqueConstraint;
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"cnpj"})})
 public class Locadora extends Usuario implements Serializable{
     
-    private Long id;
     private String nome;
     private String cnpj;
     private String cidade;
-   
-    public Long getId() {
-        return super.getId();
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCnpj() {
         return cnpj;

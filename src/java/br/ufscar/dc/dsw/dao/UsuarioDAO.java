@@ -1,5 +1,6 @@
 package br.ufscar.dc.dsw.dao;
 
+import br.ufscar.dc.dsw.pojo.Locadora;
 import br.ufscar.dc.dsw.pojo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO<Usuario>{
@@ -60,6 +62,15 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         em.close();
         return usuario;
     }
+    
+    public Usuario getByEmail(String email) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery <Usuario> q = em.createQuery("SELECT u FROM Usuario u WHERE u.email = '" + email + "'", Usuario.class);
+        Usuario u = q.getSingleResult();
+        em.close();
+        return u; 
+    }
+    
 }
 
 

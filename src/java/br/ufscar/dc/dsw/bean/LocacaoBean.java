@@ -1,7 +1,15 @@
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.dao.ClienteDAO;
 import br.ufscar.dc.dsw.dao.LocacaoDAO;
+import br.ufscar.dc.dsw.dao.LocadoraDAO;
+import br.ufscar.dc.dsw.dao.PapelDAO;
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
+import br.ufscar.dc.dsw.pojo.Cliente;
 import br.ufscar.dc.dsw.pojo.Locacao;
+import br.ufscar.dc.dsw.pojo.Locadora;
+import br.ufscar.dc.dsw.pojo.Papel;
+import br.ufscar.dc.dsw.pojo.Usuario;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,8 +22,11 @@ import javax.swing.JOptionPane;
 public class LocacaoBean implements Serializable {
 
     private Locacao locacao;
+    private String email;
 
-    public String lista() {
+    public String lista(String email) {
+        
+        this.email = email;
         return "locacao/lista.xhtml";
     }
       
@@ -46,11 +57,15 @@ public class LocacaoBean implements Serializable {
         return "formulario.xhtml";
     }
 
-    public String salva() throws SQLException {
+    public String salva(String email) throws SQLException {
         LocacaoDAO dao = new LocacaoDAO();
         List<Locacao> listaLocacoes = getLocacoes();
         boolean locar = true;
-
+        
+        ClienteDAO clienteDAO = new ClienteDAO();
+        Cliente cliente = clienteDAO.getByEmail(email);
+        locacao.setCpf_cliente(cliente.getCpf());
+        
         if (listaLocacoes.size() != 0) {
             for (int i = 0; i < listaLocacoes.size(); i++) {
                 if (listaLocacoes.get(i).getCpf_cliente().equals(locacao.getCpf_cliente())
@@ -99,10 +114,32 @@ public class LocacaoBean implements Serializable {
 
     public List<Locacao> getLocacoes() throws SQLException {
         LocacaoDAO dao = new LocacaoDAO();
-        return dao.getAll();
+        
+        ClienteDAO clienteDAO = new ClienteDAO();
+        LocadoraDAO locadoraDAO = new LocadoraDAO();
+        LocacaoDAO locacaoDAO = new LocacaoDAO();
+        List<Locacao> lista_locacoes = null;
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.getByEmail(email);
+                  
+        Papel p1 = new PapelDAO().get(2L); //PAPEL_CLIENTE
+        Papel p2 = new PapelDAO().get(3L); //PAPEL_LOCADORA
+        
+        if(usuario.getPapel().contains(p1)){
+            String cpf_cliente = clienteDAO.getCPF(usuario.getId());
+            lista_locacoes = locacaoDAO.getListaCpf(cpf_cliente, "cliente");
+            System.out.println(lista_locacoes);
+        }if(usuario.getPapel().contains(p2)){
+            String cnpj_locadora = locadoraDAO.getCnpj(usuario.getId());
+            lista_locacoes = locacaoDAO.getListaCpf(cnpj_locadora, "locadora");
+            System.out.println(lista_locacoes);
+        }
+        
+        return lista_locacoes;
     }
 
-    public Locacao getLocacao() {
+    public Locacao getLocacao(){
         return locacao;
     }
 

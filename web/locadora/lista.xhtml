@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
     <h:head>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -21,23 +22,23 @@
         <div class ='botoes'>
             <ul>
                 <h:form>
+                    <sec:authorize ifAnyGranted="ROLE_CLIENTE"> 
                     <li><h:commandLink action="#{clienteBean.inicial()}">#{msg['inicial']}</h:commandLink></li>
-                    <!-- <sec:authorize access="hasRole('CLIENTE')"> -->
                     <li><h:commandLink action="#{locacaoBean.formularioExterno()}">#{msg['cadastro_locacao']}</h:commandLink></li>
-                    <!-- </sec:authorize> -->
+                    </sec:authorize> 
 
-                    <!-- <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> -->
+                    <sec:authorize ifAnyGranted="ROLE_CLIENTE, ROLE_LOCADORA"> 
                     <li><h:commandLink action="#{locacaoBean.listaExterno()}">#{msg['lista_locacao']}</h:commandLink></li>
-                    <!-- </sec:authorize> -->
+                    </sec:authorize> 
 
-                    <!-- <sec:authorize access="hasRole('ADMIN')"> -->
+                    <sec:authorize ifAnyGranted="ROLE_ADMIN"> 
                     <li><h:commandLink action="#{locadoraBean.formulario()}">#{msg['cadastro_locadora']}</h:commandLink></li>
                     <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
                     <li><h:commandLink action="#{clienteBean.formularioExterno()}">#{msg['cadastro_cliente']}</h:commandLink></li>
                     <li><h:commandLink action="#{clienteBean.listaExterno()}">#{msg['lista_cliente']}</h:commandLink></li>
-                    <!-- </sec:authorize> -->
+                    </sec:authorize> 
 
-                    <li><h:commandLink action="logout">Logout</h:commandLink></li>
+                    <li><a href="#{request.contextPath}/logout">Logout</a></li>
                 </h:form>
             </ul>
         </div>

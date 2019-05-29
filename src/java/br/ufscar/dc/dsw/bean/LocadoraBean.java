@@ -64,14 +64,11 @@ public class LocadoraBean implements Serializable {
 
     public String salva() {
         LocadoraDAO dao = new LocadoraDAO();
-        PapelDAO papelDAO = new PapelDAO();
 
         locadora.setSenha(encoder.encode(locadora.getSenha()));
         locadora.setAtivo(1);
 
-        Papel p1 = new Papel();
-        p1.setNome("ROLE_LOCADORA");
-        papelDAO.save(p1);
+        Papel p1 = new PapelDAO().get(3L);
 
         if (locadora.getId() == null) {
             dao.save(locadora);
