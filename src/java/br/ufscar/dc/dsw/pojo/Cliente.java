@@ -13,21 +13,11 @@ import javax.persistence.UniqueConstraint;
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"cpf"})})
 public class Cliente extends Usuario implements Serializable{
     
-    @Id
-    private Long id;
     private String nome;
     private String data_nascimento;
     private String sexo;
     private String cpf;
     private String telefone;
-
-    public Long getId() {
-        return super.getId();
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getData_nascimento() {
         return data_nascimento;

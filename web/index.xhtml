@@ -6,10 +6,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
 
-    <!--TO DO: ver como adiciona as tags de segurança pra acesso -->
-
     <h:head>
         <h:outputStylesheet library="css" name="estilo.css"/>
+        
+        #{request.getUserPrincipal().getName().toString()}
 
         <title>#{msg['aluguel']}</title>
 
@@ -24,15 +24,15 @@
         <div class ='botoes'>
             <ul>
                 <h:form>
-                    <sec:authorize access="hasRole('CLIENTE')"> 
+                    <sec:authorize ifAnyGranted="ROLE_CLIENTE"> 
                         <li><h:commandLink action="#{locacaoBean.cadastra()}">#{msg['cadastro_locacao']}</h:commandLink></li>
                     </sec:authorize> 
 
-                    <sec:authorize access="hasAnyRole('CLIENTE', 'LOCADORA')"> 
-                        <li><h:commandLink action="#{locacaoBean.lista()}">#{msg['lista_locacao']}</h:commandLink></li>
+                    <sec:authorize ifAnyGranted="ROLE_CLIENTE, ROLE_LOCADORA"> 
+                        <li><h:commandLink action="#{locacaoBean.lista(request.getUserPrincipal().getName().toString())}">#{msg['lista_locacao']}</h:commandLink></li>
                     </sec:authorize> 
 
-                    <sec:authorize access="hasRole('ADMIN')"> 
+                    <sec:authorize ifAnyGranted="ROLE_ADMIN"> 
                         <li><h:commandLink action="#{locadoraBean.cadastra()}">#{msg['cadastro_locadora']}</h:commandLink></li>
                         <li><h:commandLink action="#{locadoraBean.lista()}">#{msg['lista_locadora']}</h:commandLink></li>
                         <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>

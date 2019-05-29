@@ -10,9 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class Usuario implements Serializable{
     
     @Id
