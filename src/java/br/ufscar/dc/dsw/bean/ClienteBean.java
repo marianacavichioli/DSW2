@@ -63,13 +63,6 @@ public class ClienteBean implements Serializable {
 
         cliente.setSenha(encoder.encode(cliente.getSenha()));
         cliente.setAtivo(1);
-        
-        Boolean email_existe = isValidEmailAddressRegex(cliente.getEmail());
-        if(email_existe){
-            System.out.println("email existe");
-        }else{
-            System.out.println("email nao existe");
-        }
 
         Papel p1 = new PapelDAO().get(2L);
 
@@ -113,19 +106,6 @@ public class ClienteBean implements Serializable {
 
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public static boolean isValidEmailAddressRegex(String email) {
-        boolean isEmailIdValid = false;
-        if (email != null && email.length() > 0) {
-            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(email);
-            if (matcher.matches()) {
-                isEmailIdValid = true;
-            }
-        }
-        return isEmailIdValid;
     }
 
 }

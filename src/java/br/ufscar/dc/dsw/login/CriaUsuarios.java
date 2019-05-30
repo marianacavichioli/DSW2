@@ -44,7 +44,7 @@ public class CriaUsuarios {
         Cliente u2 = new Cliente();
         u2.setEmail("cliente@cliente");
         u2.setSenha(encoder.encode("cliente"));
-        u2.setCpf("34445638846");
+        u2.setCpf("344.456.388-46");
         u2.setAtivo(1);
         cdao.save(u2);
 
@@ -61,7 +61,7 @@ public class CriaUsuarios {
         
         Locadora u3 = new Locadora();
         u3.setEmail("locadora@locadora");
-        u3.setCnpj("1");
+        u3.setCnpj("11.111.111/1111-11");
         u3.setSenha(encoder.encode("locadora"));
         u3.setAtivo(1);
         ldao.save(u3);
@@ -72,12 +72,5 @@ public class CriaUsuarios {
 
         u3.getPapel().add(p3);
         ldao.update(u3);
-        
-        // Criando uma locacao fake
-        Locacao l1 = new Locacao();
-        l1.setCnpj_locadora("1");
-        l1.setCpf_cliente("34445638846");
-        LocacaoDAO dao = new LocacaoDAO();
-        dao.save(l1);
     }
 }

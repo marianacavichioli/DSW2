@@ -85,6 +85,8 @@
                                      required="true"
                                      a:type="email">
                             <f:validateRequired/>
+                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"
+                                             />
                         </h:inputText>
                         <h:message for="email"/>
                     </div>  

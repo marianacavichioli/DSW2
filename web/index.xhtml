@@ -9,8 +9,6 @@
     <h:head>
         <h:outputStylesheet library="css" name="estilo.css"/>
         
-        #{request.getUserPrincipal().getName().toString()}
-
         <title>#{msg['aluguel']}</title>
 
         <div class= "header">
@@ -38,8 +36,13 @@
                         <li><h:commandLink action="#{clienteBean.cadastra()}">#{msg['cadastro_cliente']}</h:commandLink></li>
                         <li><h:commandLink action="#{clienteBean.lista()}">#{msg['lista_cliente']}</h:commandLink></li>
                     </sec:authorize> 
-
-                    <li><a href="#{request.contextPath}/logout">Logout</a></li>
+                    
+                    <sec:authorize ifAnyGranted="ROLE_CLIENTE, ROLE_LOCADORA, ROLE_ADMIN"> 
+                        <li><a href="#{request.contextPath}/logout">Logout</a></li>
+                    </sec:authorize> 
+                    <sec:authorize access="isAnonymous()">
+                        <li><a href="#{request.contextPath}/logout">Login</a></li>
+                    </sec:authorize> 
                 </h:form>
             </ul>
         </div>
